@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jurado de Vinos · Paso 1.1 Datos</title>
+    <meta
+      name="description"
+      content="Exploración inicial del dataset de vinos para la práctica Jurado de Vinos."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" data-page="data-insights">
+      <header class="topbar">
+        <div class="brand" aria-label="Identidad del proyecto">
+          <div class="brand__badge">🍷</div>
+          <div>
+            <h1 class="brand__title">Jurado de Vinos</h1>
+            <p class="brand__subtitle">Práctica interactiva de aprendizaje automático</p>
+          </div>
+        </div>
+
+        <div class="status-pill">Paso 1.1 · Exploración de datos</div>
+      </header>
+
+      <nav class="steps" aria-label="Pasos de la práctica">
+        <a class="step-card" href="./index.html">
+          <span class="step-card__label">Paso 0</span>
+          <strong class="step-card__title">Introducción al caso</strong>
+        </a>
+        <a class="step-card step-card--active" href="./datos.html">
+          <span class="step-card__label">Paso 1</span>
+          <strong class="step-card__title">Exploración de datos</strong>
+        </a>
+        <a class="step-card" href="./entrenamiento.html">
+          <span class="step-card__label">Paso 2</span>
+          <strong class="step-card__title">Entrenamiento del modelo</strong>
+        </a>
+        <a class="step-card" href="./evaluacion.html">
+          <span class="step-card__label">Paso 3</span>
+          <strong class="step-card__title">Evaluación y conclusiones</strong>
+        </a>
+      </nav>
+
+      <section class="page-intro-grid">
+        <article class="card page-intro-copy">
+          <span class="eyebrow">Paso 1.1 · Vista inicial del conjunto de datos</span>
+          <h2 class="page-title">Antes de entrenar, primero hay que mirar los datos.</h2>
+          <p class="page-lead">
+            El primer paso al construir un modelo consiste en entender la información disponible. En
+            este caso, el contenido del dataset se presenta como una tabla con variables químicas del
+            vino que más adelante usaremos para predecir su calidad.
+          </p>
+          <p>
+            Además de observar la tabla, conviene empezar a plantearse algunas preguntas: ¿qué forma
+            tiene la variable que queremos predecir?, ¿es numérica?, ¿qué valores toma?, ¿qué
+            variables te parecen más relevantes para explicar la calidad del vino?
+          </p>
+          <div class="inline-actions">
+            <a class="button button--primary" href="#tabla-datos">Ver tabla</a>
+          </div>
+        </article>
+
+        <aside class="summary-grid">
+          <article class="card metric-card">
+            <span class="metric-card__label">Dataset objetivo</span>
+            <strong class="metric-card__value">6.497</strong>
+            <p class="metric-card__text">registros combinando vinos blancos y tintos.</p>
+          </article>
+          <article class="card metric-card">
+            <span class="metric-card__label">Variables químicas</span>
+            <strong class="metric-card__value">11+</strong>
+            <p class="metric-card__text">atributos numéricos para construir el modelo.</p>
+          </article>
+          <article class="card metric-card">
+            <span class="metric-card__label">Variable objetivo</span>
+            <strong class="metric-card__value">Calidad</strong>
+            <p class="metric-card__text">puntuación en una escala discreta del 1 al 10.</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="substeps">
+        <a class="substep-pill substep-pill--active" href="./datos.html">1.1 Datos</a>
+        <a class="substep-pill" href="./estadisticas.html">1.2 Estadísticas</a>
+      </section>
+
+      <section class="data-layout" id="tabla-datos">
+        <article class="card table-card">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Exploración</span>
+              <h3>Tabla de observaciones</h3>
+            </div>
+            
+          </div>
+
+          <p class="section-copy">
+            La interfaz replica la segunda pantalla de la práctica original: una tabla con filas del
+            dataset, selector de número de entradas visibles y cuadro de búsqueda para inspeccionar la
+            información de forma rápida.
+          </p>
+
+          <div class="dataset-banner">
+            <strong>Nota del prototipo:</strong> para esta versión visual se ha cargado una muestra del
+            dataset integrado. Esta interfaz ya puede mostrar el conjunto completo directamente en el navegador.
+          </div>
+
+          <div class="table-toolbar">
+            <label class="toolbar-group">
+              <span>Mostrar</span>
+              <select id="rowsPerPage" class="input input--select">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+              </select>
+              <span>filas</span>
+            </label>
+
+            <label class="toolbar-group toolbar-group--search">
+              <span>Buscar</span>
+              <input
+                id="searchInput"
+                class="input"
+                type="search"
+                placeholder="Escribe un valor o nombre de columna"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="data-table-wrap">
+            <table class="data-table" aria-label="Vista previa del dataset de vinos">
+              <thead>
+                <tr id="tableHeadRow"></tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <p id="tableSummary" class="table-summary">Mostrando 0 filas</p>
+            <div class="pagination-controls">
+              <button class="button button--secondary button--small" id="prevPage" type="button">
+                Anterior
+              </button>
+              <span id="pageIndicator" class="page-indicator">Página 1</span>
+              <button class="button button--secondary button--small" id="nextPage" type="button">
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <aside class="sidebar-stack">
+          <article class="card helper-card">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Preguntas clave</span>
+                <h3>Qué deberías observar</h3>
+              </div>
+            </div>
+            <ol class="question-list">
+              <li>
+                ¿Cómo es la variable <strong>calidad</strong>? ¿Es numérica? ¿Qué valores parece tomar?
+              </li>
+              <li>
+                ¿Qué variables, usando tu criterio, crees que podrían influir en la calidad del vino?
+              </li>
+              <li>
+                ¿Ves rangos, valores extremos o columnas que parezcan especialmente informativas?
+              </li>
+            </ol>
+          </article>
+
+          <article class="card helper-card helper-card--accent">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Siguiente paso</span>
+                <h3>Ir a estadísticas</h3>
+              </div>
+            </div>
+            <p>
+              La siguiente pantalla profundizará en distribuciones, histogramas y promedios por grupo
+              de calidad, tal como se ve en la práctica de referencia.
+            </p>
+            <div class="button-row button-row--stretch">
+              <a class="button button--primary button--full" href="./estadisticas.html">Ir al Paso 1.2</a>
+            </div>
+          </article>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="./wine-data.js"></script>
+    <script src="./data-insights.js"></script>
+  </body>
+</html>

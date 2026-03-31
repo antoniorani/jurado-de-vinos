@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jurado de Vinos · Evaluación avanzada</title>
+    <meta
+      name="description"
+      content="Comparación del comportamiento del modelo en vinos blancos y tintos."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" data-page="advanced-evaluation">
+      <header class="topbar">
+        <div class="brand" aria-label="Identidad del proyecto">
+          <div class="brand__badge">🍷</div>
+          <div>
+            <h1 class="brand__title">Jurado de Vinos</h1>
+            <p class="brand__subtitle">Práctica interactiva de aprendizaje automático</p>
+          </div>
+        </div>
+
+        <div class="status-pill">Análisis extra · Comparativa por tipo</div>
+      </header>
+
+      <nav class="steps" aria-label="Pasos de la práctica">
+        <a class="step-card" href="./index.html">
+          <span class="step-card__label">Paso 0</span>
+          <strong class="step-card__title">Introducción al caso</strong>
+        </a>
+        <a class="step-card" href="./datos.html">
+          <span class="step-card__label">Paso 1</span>
+          <strong class="step-card__title">Exploración de datos</strong>
+        </a>
+        <a class="step-card" href="./entrenamiento.html">
+          <span class="step-card__label">Paso 2</span>
+          <strong class="step-card__title">Entrenamiento del modelo</strong>
+        </a>
+        <a class="step-card" href="./evaluacion.html">
+          <span class="step-card__label">Paso 3</span>
+          <strong class="step-card__title">Evaluación y conclusiones</strong>
+        </a>
+        <a class="step-card step-card--active" href="./evaluacion-avanzada.html">
+          <span class="step-card__label">Extra</span>
+          <strong class="step-card__title">Análisis extra</strong>
+        </a>
+      </nav>
+
+      <section class="empty-state-section" id="advancedEmptyState" hidden>
+        <article class="card helper-card helper-card--accent empty-state-card">
+          <span class="eyebrow">Análisis extra</span>
+          <h2 class="page-title">Antes de abrir este análisis, primero hay que entrenar un modelo.</h2>
+          <p class="page-lead">Ve al Paso 2, entrena el modelo y después vuelve aquí desde el botón <strong>Análisis extra</strong> del Paso 3.</p>
+          <div class="button-row">
+            <a class="button button--primary" href="./entrenamiento.html">Ir al Paso 2</a>
+          </div>
+        </article>
+      </section>
+
+      <div id="advancedEvaluationContent">
+      <section class="page-intro-grid">
+        <article class="card page-intro-copy">
+          <span class="eyebrow">Análisis extra · Equidad del modelo</span>
+          <h2 class="page-title">¿Se comporta igual el modelo con vinos blancos y tintos?</h2>
+          <p class="page-lead">
+            Oh, oh. La empresa ha recibido quejas porque parece que el modelo no trata a todos los vinos por igual.
+            Resulta que en el conjunto de datos hay dos grupos, vinos blancos y vinos tintos, y además hay muchos más blancos que tintos.
+          </p>
+          <p>
+            Tu tarea ahora es comprobar si realmente existe una diferencia significativa entre ambos grupos.
+            Para ello puedes apoyarte en las tablas de esta página, que muestran por separado las predicciones y métricas del modelo para vinos blancos y para vinos tintos.
+          </p></article>
+
+        <aside class="dashboard-grid">
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Algoritmo</span>
+            <strong class="dashboard-card__value dashboard-card__value--small" data-advanced-stat="algorithm">-</strong>
+            <p class="dashboard-card__text">método empleado en esta comparación.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Corte de compra</span>
+            <strong class="dashboard-card__value" data-advanced-stat="threshold">-</strong>
+            <p class="dashboard-card__text">calidad mínima para recomendar la compra.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Partición</span>
+            <strong class="dashboard-card__value dashboard-card__value--small" data-advanced-stat="split">-</strong>
+            <p class="dashboard-card__text">reparto entre entrenamiento y prueba.</p>
+          </article>
+          <article class="card dashboard-card dashboard-card--accent">
+            <span class="dashboard-card__label">Variables activas</span>
+            <strong class="dashboard-card__value" data-advanced-stat="features">-</strong>
+            <p class="dashboard-card__text">atributos usados por el modelo actual.</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="data-layout advanced-groups-layout">
+        <article class="card helper-card helper-card--accent advanced-group-card">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <span class="section-kicker">Grupo 1</span>
+              <h3>Vinos blancos</h3>
+            </div>
+            <div class="tag tag--soft"><span data-group-count="blanco">0</span> muestras de test</div>
+          </div>
+          <div class="confusion-grid confusion-grid--compact" aria-label="Matriz de confusión de vinos blancos">
+            <div class="confusion-grid__corner"></div>
+            <div class="confusion-grid__header">Realidad: Comprar</div>
+            <div class="confusion-grid__header">Realidad: Rechazar</div>
+            <div class="confusion-grid__side">Predicción: Comprar</div>
+            <div class="confusion-cell confusion-cell--good">
+              <strong data-matrix="white-tp">0</strong>
+              <span>Acierto positivo</span>
+            </div>
+            <div class="confusion-cell confusion-cell--warn">
+              <strong data-matrix="white-fp">0</strong>
+              <span>Falso positivo</span>
+            </div>
+            <div class="confusion-grid__side">Predicción: Rechazar</div>
+            <div class="confusion-cell confusion-cell--warn">
+              <strong data-matrix="white-fn">0</strong>
+              <span>Falso negativo</span>
+            </div>
+            <div class="confusion-cell confusion-cell--good">
+              <strong data-matrix="white-tn">0</strong>
+              <span>Acierto negativo</span>
+            </div>
+          </div>
+          <div class="data-table-wrap table-lite-wrap">
+            <table class="table-lite" aria-label="Métricas de vinos blancos">
+              <thead>
+                <tr>
+                  <th>Métrica</th>
+                  <th>Valor</th>
+                  <th>Explicación</th>
+                </tr>
+              </thead>
+              <tbody data-metrics="white"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card advanced-visual-card">
+          <div class="pour-scene pour-scene--white" aria-hidden="true">
+            <div class="pour-scene__glass"></div>
+            <div class="pour-scene__stream"></div>
+            <div class="pour-scene__wave"></div>
+          </div>
+          <div class="advanced-visual-copy">
+            <span class="section-kicker">Lectura rápida</span>
+            <h3>Comparativa inmediata</h3>
+            <p id="advancedComparisonNote">
+              Aquí aparecerá un comentario comparando el rendimiento entre blancos y tintos.
+            </p>
+          </div>
+        </article>
+
+        <article class="card helper-card advanced-group-card">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <span class="section-kicker">Grupo 2</span>
+              <h3>Vinos tintos</h3>
+            </div>
+            <div class="tag tag--soft"><span data-group-count="tinto">0</span> muestras de test</div>
+          </div>
+          <div class="confusion-grid confusion-grid--compact" aria-label="Matriz de confusión de vinos tintos">
+            <div class="confusion-grid__corner"></div>
+            <div class="confusion-grid__header">Realidad: Comprar</div>
+            <div class="confusion-grid__header">Realidad: Rechazar</div>
+            <div class="confusion-grid__side">Predicción: Comprar</div>
+            <div class="confusion-cell confusion-cell--good">
+              <strong data-matrix="red-tp">0</strong>
+              <span>Acierto positivo</span>
+            </div>
+            <div class="confusion-cell confusion-cell--warn">
+              <strong data-matrix="red-fp">0</strong>
+              <span>Falso positivo</span>
+            </div>
+            <div class="confusion-grid__side">Predicción: Rechazar</div>
+            <div class="confusion-cell confusion-cell--warn">
+              <strong data-matrix="red-fn">0</strong>
+              <span>Falso negativo</span>
+            </div>
+            <div class="confusion-cell confusion-cell--good">
+              <strong data-matrix="red-tn">0</strong>
+              <span>Acierto negativo</span>
+            </div>
+          </div>
+          <div class="data-table-wrap table-lite-wrap">
+            <table class="table-lite" aria-label="Métricas de vinos tintos">
+              <thead>
+                <tr>
+                  <th>Métrica</th>
+                  <th>Valor</th>
+                  <th>Explicación</th>
+                </tr>
+              </thead>
+              <tbody data-metrics="red"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="data-layout next-step-section">
+        <article class="card helper-card helper-card--accent next-step-card">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <span class="section-kicker">Trabajo del alumnado</span>
+              <h3>Guía para analizar los resultados</h3>
+            </div>
+          </div>
+          <p id="advancedEvaluationNote">
+            Aquí aparecerán indicaciones para ayudarte a comparar ambas tablas sin desvelar la conclusión.
+          </p>
+          <div class="button-row">
+            <a class="button button--secondary" id="backToStep3Link" href="./evaluacion.html">Volver al Paso 3</a>
+            <a class="button button--secondary" id="backToTrainingLink" href="./entrenamiento.html">Crear otro modelo</a>
+          </div>
+        </article>
+      </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="./wine-data.js"></script>
+    <script src="./advanced-evaluation.js"></script>
+  </body>
+</html>

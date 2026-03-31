@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jurado de Vinos · Paso 2 Entrenamiento</title>
+    <meta
+      name="description"
+      content="Configuración y entrenamiento del modelo para la práctica Jurado de Vinos."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" data-page="training-config">
+      <header class="topbar">
+        <div class="brand" aria-label="Identidad del proyecto">
+          <div class="brand__badge">🍷</div>
+          <div>
+            <h1 class="brand__title">Jurado de Vinos</h1>
+            <p class="brand__subtitle">Práctica interactiva de aprendizaje automático</p>
+          </div>
+        </div>
+
+        <div class="status-pill">Paso 2 · Configuración del modelo</div>
+      </header>
+
+      <nav class="steps" aria-label="Pasos de la práctica">
+        <a class="step-card" href="./index.html">
+          <span class="step-card__label">Paso 0</span>
+          <strong class="step-card__title">Introducción al caso</strong>
+        </a>
+        <a class="step-card" href="./datos.html">
+          <span class="step-card__label">Paso 1</span>
+          <strong class="step-card__title">Exploración de datos</strong>
+        </a>
+        <a class="step-card step-card--active" href="./entrenamiento.html">
+          <span class="step-card__label">Paso 2</span>
+          <strong class="step-card__title">Entrenamiento del modelo</strong>
+        </a>
+        <a class="step-card" href="./evaluacion.html">
+          <span class="step-card__label">Paso 3</span>
+          <strong class="step-card__title">Evaluación y conclusiones</strong>
+        </a>
+      </nav>
+
+      <section class="page-intro-grid">
+        <article class="card page-intro-copy">
+          <span class="eyebrow">Paso 2 · Configuración y entrenamiento</span>
+          <h2 class="page-title">Ahora toca decidir cómo va a aprender el modelo.</h2>
+          <p class="page-lead">
+            En esta pantalla puedes definir a partir de qué calidad un vino se considera apto para comprar,
+            cuánto porcentaje del dataset se usará para entrenar y qué variables químicas tendrá en cuenta el modelo.
+          </p>
+          <p>
+            También puedes elegir entre varios algoritmos. Igual que en la práctica original, la decisión final
+            dependerá de la combinación de variables, del tamaño del conjunto de entrenamiento y del método de clasificación.
+          </p>
+        </article>
+
+        <aside class="dashboard-grid">
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Corte de compra</span>
+            <strong class="dashboard-card__value" data-training-stat="threshold">5</strong>
+            <p class="dashboard-card__text">calidad mínima a partir de la cual compraríamos un vino.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Entrenamiento</span>
+            <strong class="dashboard-card__value" data-training-stat="split">50%</strong>
+            <p class="dashboard-card__text">porcentaje reservado para entrenar el modelo.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Variables activas</span>
+            <strong class="dashboard-card__value" data-training-stat="feature-count">11</strong>
+            <p class="dashboard-card__text">atributos que se usarán como entrada en esta configuración.</p>
+          </article>
+          <article class="card dashboard-card dashboard-card--accent">
+            <span class="dashboard-card__label">Algoritmo</span>
+            <strong class="dashboard-card__value" data-training-stat="algorithm">Regresión logística</strong>
+            <p class="dashboard-card__text">modelo seleccionado actualmente para la simulación del entrenamiento.</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="training-layout" id="configuracion-modelo">
+        <div class="training-stack">
+          <article class="card control-card control-card--spacious">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Parámetros</span>
+                <h3>Define la política de compra y el tamaño del entrenamiento</h3>
+              </div>
+              <div class="tag tag--soft">Configuración principal</div>
+            </div>
+            <p class="section-copy">
+              Ajusta estos dos controles para decidir cuándo un vino será considerado “comprable” y qué parte de los datos se destinará al entrenamiento del modelo.
+            </p>
+
+            <div class="slider-grid">
+              <label class="range-card">
+                <div class="range-card__header">
+                  <span>¿Cuándo es un vino lo bastante bueno para comprar?</span>
+                  <strong id="qualityCutoffValue">5</strong>
+                </div>
+                <input id="qualityCutoff" class="range-input" type="range" min="3" max="9" step="1" value="5" />
+                <div class="range-scale">
+                  <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                </div>
+              </label>
+
+              <label class="range-card">
+                <div class="range-card__header">
+                  <span>¿Qué tamaño tendrá el conjunto de entrenamiento?</span>
+                  <strong id="trainSplitValue">50%</strong>
+                </div>
+                <input id="trainSplit" class="range-input" type="range" min="10" max="90" step="5" value="50" />
+                <div class="range-scale range-scale--compact">
+                  <span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span>
+                </div>
+              </label>
+            </div>
+          </article>
+
+          <article class="card control-card control-card--spacious">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Variables</span>
+                <h3>Selecciona qué atributos químicos tendrá en cuenta el modelo</h3>
+              </div>
+            </div>
+            <p class="section-copy">
+              En la práctica original se permitía escoger qué variables utilizar. Aquí puedes activar o desactivar atributos y comparar cómo cambia tu configuración.
+            </p>
+
+            <div id="featureList" class="feature-selector-grid" aria-label="Selector de variables"></div>
+          </article>
+
+          <article class="card control-card control-card--spacious">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Algoritmo</span>
+                <h3>Elige el método de clasificación</h3>
+              </div>
+            </div>
+            <div id="algorithmList" class="algorithm-list" role="radiogroup" aria-label="Selección de algoritmo"></div>
+            <div class="note-box">
+              <strong>Nota:</strong> el Random forest suele dar modelos más estables, pero requiere más cálculo. En la práctica original también se advertía de que podía tardar más.
+            </div>
+          </article>
+        </div>
+
+        <aside class="sidebar-stack">
+          <article class="card helper-card helper-card--accent">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Resumen</span>
+                <h3>Tu configuración actual</h3>
+              </div>
+            </div>
+            <div class="summary-list" id="configSummary"></div>
+            <div class="button-row button-row--stretch">
+              <button class="button button--primary button--full" id="trainModelButton" type="button">Entrenar el modelo</button>
+              <button class="button button--secondary button--full" id="resetConfigButton" type="button">Restablecer ajustes</button>
+            </div>
+          </article>
+
+          <article class="card stats-card">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Balance de clases</span>
+                <h3>Qué pasará con el criterio de compra</h3>
+              </div>
+            </div>
+            <div class="class-balance-grid">
+              <div class="mini-metric">
+                <span class="mini-metric__label">Comprar</span>
+                <strong class="mini-metric__value" data-training-metric="buy-count">0</strong>
+                <span class="mini-metric__text">vinos por encima o igual al corte</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric__label">Rechazar</span>
+                <strong class="mini-metric__value" data-training-metric="reject-count">0</strong>
+                <span class="mini-metric__text">vinos por debajo del corte</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric__label">Train</span>
+                <strong class="mini-metric__value" data-training-metric="train-count">0</strong>
+                <span class="mini-metric__text">filas para entrenamiento</span>
+              </div>
+              <div class="mini-metric">
+                <span class="mini-metric__label">Test</span>
+                <strong class="mini-metric__value" data-training-metric="test-count">0</strong>
+                <span class="mini-metric__text">filas para evaluación posterior</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card helper-card">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Sugerencia</span>
+                <h3>Cómo interpretar esta pantalla</h3>
+              </div>
+            </div>
+            <p>
+              Un corte de compra alto hace que haya menos vinos “positivos”, por lo que el problema se vuelve más exigente. Un conjunto de entrenamiento mayor suele ayudar, aunque deja menos datos para evaluar.
+            </p>
+            <p>
+              Prueba una configuración sencilla primero y anota tus decisiones. En el siguiente paso podremos mostrar la matriz de confusión y comparar resultados.
+            </p>
+          </article>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="./wine-data.js"></script>
+    <script src="./training.js"></script>
+  </body>
+</html>

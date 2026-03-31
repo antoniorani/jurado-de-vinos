@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jurado de Vinos · Paso 1.2 Estadísticas</title>
+    <meta
+      name="description"
+      content="Estadísticas generales del dataset de vinos para la práctica Jurado de Vinos."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" data-page="statistics">
+      <header class="topbar">
+        <div class="brand" aria-label="Identidad del proyecto">
+          <div class="brand__badge">🍷</div>
+          <div>
+            <h1 class="brand__title">Jurado de Vinos</h1>
+            <p class="brand__subtitle">Práctica interactiva de aprendizaje automático</p>
+          </div>
+        </div>
+
+        <div class="status-pill">Paso 1.2 · Estadísticas</div>
+      </header>
+
+      <nav class="steps" aria-label="Pasos de la práctica">
+        <a class="step-card" href="./index.html">
+          <span class="step-card__label">Paso 0</span>
+          <strong class="step-card__title">Introducción al caso</strong>
+        </a>
+        <a class="step-card step-card--active" href="./datos.html">
+          <span class="step-card__label">Paso 1</span>
+          <strong class="step-card__title">Exploración de datos</strong>
+        </a>
+        <a class="step-card" href="./entrenamiento.html">
+          <span class="step-card__label">Paso 2</span>
+          <strong class="step-card__title">Entrenamiento del modelo</strong>
+        </a>
+        <a class="step-card" href="./evaluacion.html">
+          <span class="step-card__label">Paso 3</span>
+          <strong class="step-card__title">Evaluación y conclusiones</strong>
+        </a>
+      </nav>
+
+      <section class="page-intro-grid">
+        <article class="card page-intro-copy">
+          <span class="eyebrow">Paso 1.2 · Estadísticas generales</span>
+          <h2 class="page-title">Ahora toca resumir lo que hay dentro del dataset.</h2>
+          <p class="page-lead">
+            Esta pantalla reproduce la lógica de la práctica original: distribución de la calidad,
+            correlación de variables con la calidad y estadísticas por grupo para la variable que elijas.
+          </p>
+          <p>
+            Cambia de variable para observar cómo varían la media, la desviación típica y la mediana
+            según cada nivel de calidad. Estas pistas te ayudarán a decidir qué atributos usar más adelante.
+          </p>
+        </article>
+
+        <aside class="dashboard-grid">
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Calidades distintas</span>
+            <strong class="dashboard-card__value" data-stat="quality-count">0</strong>
+            <p class="dashboard-card__text">niveles de calidad observados en el dataset.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Variable seleccionada</span>
+            <strong class="dashboard-card__value" data-stat="selected-variable">Alcohol</strong>
+            <p class="dashboard-card__text">atributo analizado por grupos de calidad.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Mejor correlación</span>
+            <strong class="dashboard-card__value" data-stat="best-correlation">—</strong>
+            <p class="dashboard-card__text">variable con relación lineal más fuerte con la calidad.</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="substeps">
+        <a class="substep-pill" href="./datos.html">1.1 Datos</a>
+        <a class="substep-pill substep-pill--active" href="./estadisticas.html">1.2 Estadísticas</a>
+      </section>
+
+      <section class="statistics-layout" id="resumen-estadistico">
+        <div class="chart-stack">
+          <article class="card chart-card">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Distribución</span>
+                <h3>Histograma de calidad</h3>
+              </div>
+              <div class="tag tag--soft">Resumen global</div>
+            </div>
+            <p class="section-copy">
+              Las barras muestran cuántos vinos hay en cada puntuación de calidad. Así puedes ver rápidamente qué calidades son más frecuentes.
+            </p>
+            <div class="chart-shell">
+              <canvas id="qualityChart" aria-label="Histograma de calidad"></canvas>
+            </div>
+          </article>
+
+          <article class="card stats-card">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Correlación</span>
+                <h3>Variables relacionadas con la calidad</h3>
+              </div>
+            </div>
+            <p class="section-copy">
+              Este bloque resume la correlación lineal entre cada variable y la calidad. Un valor positivo indica que la variable tiende a aumentar con la calidad; un valor negativo, lo contrario.
+            </p>
+            <div id="correlationList" class="legend-list"></div>
+          </article>
+        </div>
+
+        <aside class="stats-stack">
+          <article class="card control-card">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Selector</span>
+                <h3>Variable a inspeccionar</h3>
+              </div>
+            </div>
+            <div class="control-grid">
+              <label class="toolbar-group">
+                <span>Variable</span>
+                <select id="variableSelect" class="input input--select input--wide"></select>
+              </label>
+            </div>
+            <div class="control-card__help">
+              Las estadísticas de abajo se recalculan al cambiar la variable seleccionada.
+            </div>
+          </article>
+
+          <article class="card stats-card">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Por grupo</span>
+                <h3>Estadísticas por calidad</h3>
+              </div>
+            </div>
+            <table class="table-lite" aria-label="Estadísticas por grupo de calidad">
+              <thead>
+                <tr>
+                  <th>Calidad</th>
+                  <th>Media</th>
+                  <th>Desv. típica</th>
+                  <th>Mediana</th>
+                </tr>
+              </thead>
+              <tbody id="statsByQualityBody"></tbody>
+            </table>
+          </article>
+        </aside>
+      </section>
+
+
+      <section class="data-layout next-step-section">
+        <article class="card helper-card helper-card--accent">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <span class="section-kicker">Siguiente paso</span>
+              <h3>Ir al entrenamiento del modelo</h3>
+            </div>
+          </div>
+          <p>
+            Ya has revisado la distribución de la calidad, las correlaciones y el comportamiento de
+            cada variable. Ahora toca decidir el criterio de compra, el reparto train/test y el
+            algoritmo con el que se entrenará el modelo.
+          </p>
+          <div class="button-row">
+            <a class="button button--primary" href="./entrenamiento.html">Ir al Paso 2 · Entrenamiento</a>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./app.js"></script>
+    <script src="./wine-data.js"></script>
+    <script src="./statistics.js"></script>
+  </body>
+</html>

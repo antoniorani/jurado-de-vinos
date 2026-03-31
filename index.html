@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jurado de Vinos · Inicio</title>
+    <meta
+      name="description"
+      content="Práctica interactiva de aprendizaje automático para predecir la calidad del vino."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Identidad del proyecto">
+          <div class="brand__badge">🍷</div>
+          <div>
+            <h1 class="brand__title">Jurado de Vinos</h1>
+            <p class="brand__subtitle">Práctica interactiva de aprendizaje automático</p>
+          </div>
+        </div>
+
+        <div class="status-pill">Versión 1 · Pantalla de inicio</div>
+      </header>
+
+      <nav class="steps" aria-label="Pasos de la práctica">
+        <a class="step-card step-card--active" href="./index.html">
+          <span class="step-card__label">Paso 0</span>
+          <strong class="step-card__title">Introducción al caso</strong>
+        </a>
+        <a class="step-card" href="./datos.html">
+          <span class="step-card__label">Paso 1</span>
+          <strong class="step-card__title">Exploración de datos</strong>
+        </a>
+        <a class="step-card" href="./entrenamiento.html">
+          <span class="step-card__label">Paso 2</span>
+          <strong class="step-card__title">Entrenamiento del modelo</strong>
+        </a>
+        <a class="step-card" href="./evaluacion.html">
+          <span class="step-card__label">Paso 3</span>
+          <strong class="step-card__title">Evaluación y conclusiones</strong>
+        </a>
+      </nav>
+
+      <section class="hero-grid">
+        <article class="card hero-copy">
+          <span class="eyebrow">Caso práctico · Vinitos S.L.</span>
+          <h2 class="hero-copy__title">Querido equipo de ciencia de datos,</h2>
+          <p class="hero-copy__lead">
+            vuestra tarea será ayudar a definir la nueva estrategia de compras de nuestra empresa.
+          </p>
+          <p>
+            Queremos centrar nuestros esfuerzos en vinos más exclusivos y de gama alta. Por eso, es
+            fundamental que nuestro proceso de compra sea capaz de estimar con precisión la calidad
+            de un vino. Un error podría dañar seriamente nuestra reputación.
+          </p>
+          <p>
+            Hasta ahora, nuestras decisiones se han basado en expertos humanos que realizan catas
+            para valorar la calidad. Sin embargo, queremos explorar una nueva vía: la compra guiada
+            por datos.
+          </p>
+          <p>
+            Tu misión será construir un algoritmo capaz de predecir la calidad de un vino a partir de
+            su composición química. Para ello dispones de datos históricos obtenidos durante las
+            evaluaciones manuales, con variables químicas y una puntuación de calidad en una escala
+            del 1 al 10.
+          </p>
+          <p>
+            El objetivo es descubrir la relación entre esas variables y la calidad del vino, para ayudar
+            a la empresa a orientar su estrategia en los próximos años.
+          </p>
+
+          <div class="signature-block">
+            <p>Un cordial saludo,</p>
+            <p><strong>La dirección general de Vinitos S.L.</strong></p>
+          </div>
+        </article>
+
+        <aside class="card hero-visual" aria-hidden="true">
+          <div class="hero-visual__glow"></div>
+          <div class="hero-visual__secondary-glow"></div>
+          <div class="hero-visual__cloth"></div>
+
+          <div class="glass-set">
+            <div class="glass">
+              <div class="glass__bowl"><div class="glass__wine"></div></div>
+              <div class="glass__stem"></div>
+              <div class="glass__foot"></div>
+            </div>
+            <div class="glass glass--offset">
+              <div class="glass__bowl"><div class="glass__wine glass__wine--medium"></div></div>
+              <div class="glass__stem"></div>
+              <div class="glass__foot"></div>
+            </div>
+            <div class="glass">
+              <div class="glass__bowl"><div class="glass__wine glass__wine--high"></div></div>
+              <div class="glass__stem"></div>
+              <div class="glass__foot"></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="content-grid">
+        <article class="card info-card info-card--accent">
+          <h3>Cómo funcionará la práctica</h3>
+          <p>
+            <strong>El texto explicativo aparecerá destacado</strong>. En este taller interactivo
+            construiremos un modelo de aprendizaje automático que prediga la calidad de un vino a
+            partir de su composición química. Primero exploraremos los datos, después entrenaremos
+            distintos modelos y, por último, evaluaremos sus resultados hasta encontrar una
+            configuración satisfactoria.
+          </p>
+          <p>
+            El objetivo es construir un modelo capaz de clasificar la calidad de los vinos a partir
+            de sus variables químicas y comparar distintas decisiones de configuración para entender
+            cómo afectan al resultado.
+          </p>
+        </article>
+
+        <aside class="card info-card">
+          <h3>Qué se espera de ti</h3>
+          <ul class="feature-list">
+            <li>Explorar la distribución de la calidad y de las variables químicas.</li>
+            <li>Decidir qué atributos usarás para entrenar el modelo.</li>
+            <li>Probar distintos algoritmos y comparar su rendimiento.</li>
+            <li>Justificar tus decisiones y comentar los resultados obtenidos.</li>
+          </ul>
+
+          <p>
+            Anota las decisiones que tomes. Te ayudará a interpretar los resultados y a comparar tu
+            solución con la de otras personas.
+          </p>
+
+          <div class="note-box">
+            Consejo: esta pantalla está pensada como introducción narrativa antes de entrar a la
+            exploración de datos.
+          </div>
+        </aside>
+      </section>
+
+      <section class="content-grid cta-grid">
+        <article class="card info-card info-card--accent cta-section">
+          <h3>¡Empecemos el estudio de los vinos!</h3>
+          <p>prepárate una buena copa de vino antes de empezar y pulsa el siguiente botón</p>
+          <div class="button-row">
+            <a class="button button--primary" href="./datos.html">Ir al Paso 1.1 · Datos</a>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

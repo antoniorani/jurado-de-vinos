@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jurado de Vinos · Paso 3 Evaluación</title>
+    <meta
+      name="description"
+      content="Evaluación del modelo para la práctica Jurado de Vinos."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" data-page="evaluation">
+      <header class="topbar">
+        <div class="brand" aria-label="Identidad del proyecto">
+          <div class="brand__badge">🍷</div>
+          <div>
+            <h1 class="brand__title">Jurado de Vinos</h1>
+            <p class="brand__subtitle">Práctica interactiva de aprendizaje automático</p>
+          </div>
+        </div>
+
+        <div class="status-pill">Paso 3 · Evaluación del modelo</div>
+      </header>
+
+      <nav class="steps" aria-label="Pasos de la práctica">
+        <a class="step-card" href="./index.html">
+          <span class="step-card__label">Paso 0</span>
+          <strong class="step-card__title">Introducción al caso</strong>
+        </a>
+        <a class="step-card" href="./datos.html">
+          <span class="step-card__label">Paso 1</span>
+          <strong class="step-card__title">Exploración de datos</strong>
+        </a>
+        <a class="step-card" href="./entrenamiento.html">
+          <span class="step-card__label">Paso 2</span>
+          <strong class="step-card__title">Entrenamiento del modelo</strong>
+        </a>
+        <a class="step-card step-card--active" href="./evaluacion.html">
+          <span class="step-card__label">Paso 3</span>
+          <strong class="step-card__title">Evaluación y conclusiones</strong>
+        </a>
+      </nav>
+
+      <section class="empty-state-section" id="evaluationEmptyState" hidden>
+        <article class="card helper-card helper-card--accent empty-state-card">
+          <span class="eyebrow">Paso 3 · Evaluación del modelo</span>
+          <h2 class="page-title">Antes de evaluar, primero hay que entrenar el modelo.</h2>
+          <p class="page-lead">Para ver resultados, métricas y la matriz de confusión, accede al Paso 2 y pulsa <strong>Entrenar modelo</strong>.</p>
+          <div class="button-row">
+            <a class="button button--primary" href="./entrenamiento.html">Ir al Paso 2</a>
+          </div>
+        </article>
+      </section>
+
+      <div id="evaluationContent">
+      <section class="page-intro-grid">
+        <article class="card page-intro-copy">
+          <span class="eyebrow">Paso 3 · Validación del modelo</span>
+          <h2 class="page-title">Ahora toca comprobar si el jurado automático acierta.</h2>
+          <p class="page-lead">
+            Esta pantalla resume el rendimiento del modelo sobre el conjunto de prueba, con una matriz de confusión,
+            métricas de clasificación y una estimación de qué variables han sido más influyentes en la decisión final.
+          </p>
+          <p>
+            La idea sigue la misma lógica de la práctica original: entrenar un modelo con una configuración determinada
+            y observar después si distingue bien entre vinos que deberíamos comprar y vinos que convendría rechazar.
+          </p>
+        </article>
+
+        <aside class="dashboard-grid">
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Algoritmo</span>
+            <strong class="dashboard-card__value dashboard-card__value--small" data-eval-stat="algorithm">-</strong>
+            <p class="dashboard-card__text">método usado en la configuración actual.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Corte de compra</span>
+            <strong class="dashboard-card__value" data-eval-stat="threshold">-</strong>
+            <p class="dashboard-card__text">criterio que separa vinos comprables y rechazables.</p>
+          </article>
+          <article class="card dashboard-card">
+            <span class="dashboard-card__label">Partición</span>
+            <strong class="dashboard-card__value dashboard-card__value--small" data-eval-stat="split">-</strong>
+            <p class="dashboard-card__text">reparto entre entrenamiento y prueba.</p>
+          </article>
+          <article class="card dashboard-card dashboard-card--accent">
+            <span class="dashboard-card__label">Variables activas</span>
+            <strong class="dashboard-card__value" data-eval-stat="features">-</strong>
+            <p class="dashboard-card__text">atributos empleados para generar esta evaluación.</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="training-layout">
+        <div class="training-stack">
+          <article class="card control-card control-card--spacious">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Resultado principal</span>
+                <h3>Matriz de confusión</h3>
+              </div>
+              <div class="tag tag--soft">Conjunto de prueba</div>
+            </div>
+            <p class="section-copy">
+              La tabla resume cuántos vinos del conjunto de prueba han sido clasificados correctamente y cuántos han generado errores de compra o rechazo.
+            </p>
+
+            <div class="confusion-grid" aria-label="Matriz de confusión">
+              <div class="confusion-grid__corner"></div>
+              <div class="confusion-grid__header">Realidad: Comprar</div>
+              <div class="confusion-grid__header">Realidad: Rechazar</div>
+              <div class="confusion-grid__side">Predicción: Comprar</div>
+              <div class="confusion-cell confusion-cell--good">
+                <strong id="matrixTp">0</strong>
+                <span>Acierto positivo</span>
+              </div>
+              <div class="confusion-cell confusion-cell--warn">
+                <strong id="matrixFp">0</strong>
+                <span>Falso positivo</span>
+              </div>
+              <div class="confusion-grid__side">Predicción: Rechazar</div>
+              <div class="confusion-cell confusion-cell--warn">
+                <strong id="matrixFn">0</strong>
+                <span>Falso negativo</span>
+              </div>
+              <div class="confusion-cell confusion-cell--good">
+                <strong id="matrixTn">0</strong>
+                <span>Acierto negativo</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card control-card control-card--spacious">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Indicadores</span>
+                <h3>Métricas de rendimiento</h3>
+              </div>
+            </div>
+            <div class="data-table-wrap table-lite-wrap">
+              <table class="table-lite" aria-label="Métricas del modelo">
+                <thead>
+                  <tr>
+                    <th>Métrica</th>
+                    <th>Valor</th>
+                    <th>Explicación</th>
+                  </tr>
+                </thead>
+                <tbody id="metricsBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <aside class="sidebar-stack">
+          <article class="card helper-card helper-card--accent">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Resumen</span>
+                <h3>Configuración evaluada</h3>
+              </div>
+            </div>
+            <div class="summary-list" id="evaluationSummary"></div>
+          </article>
+
+          <article class="card stats-card">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <span class="section-kicker">Importancia</span>
+                <h3>Variables más influyentes</h3>
+              </div>
+            </div>
+            <div class="legend-list" id="importanceList"></div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="data-layout next-step-section">
+        <article class="card helper-card helper-card--accent next-step-card">
+          <div class="section-heading section-heading--compact">
+            <div>
+              <span class="section-kicker">Conclusión</span>
+              <h3>Qué te dice esta evaluación</h3>
+            </div>
+          </div>
+          <p id="evaluationNote">
+            Aquí aparecerá el resumen de la evaluación del modelo con la configuración actual.
+          </p>
+          <div class="button-row">
+            <a class="button button--secondary" id="furtherEvaluationLink" href="./evaluacion-avanzada.html">Análisis extra</a>
+          </div>
+        </article>
+      </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="./wine-data.js"></script>
+    <script src="./evaluation.js"></script>
+  </body>
+</html>
