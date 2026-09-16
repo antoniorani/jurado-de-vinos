@@ -11,7 +11,7 @@ if (dataPage) {
     { key: 'totalSulfurDioxide', label: 'SO₂ total' },
     { key: 'density', label: 'Densidad' },
     { key: 'pH', label: 'pH' },
-    { key: 'sulphates', label: 'Sulfitos' },
+    { key: 'sulphates', label: 'Sulfatos' },
     { key: 'alcohol', label: 'Alcohol' },
     { key: 'quality', label: 'Calidad' },
     { key: 'type', label: 'Tipo' }
